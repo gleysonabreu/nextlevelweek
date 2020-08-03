@@ -9,7 +9,7 @@ export const PageLanding = styled.div`
   align-items: center;
 
   color: var(--color-text-in-primary);
-  background: var(--color-primary);
+  background: var(--color-background);
 `;
 
 export const LogoContainer = styled.div`
