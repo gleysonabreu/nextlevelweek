@@ -37,10 +37,6 @@ export const InputBlock = styled.div`
     right: 1.6rem;
     bottom: 0;
   }
-
-  & + & {
-    margin-top: 1.4rem;
-  }
 `;
 
 export const Main =styled.main`
@@ -60,7 +56,7 @@ export const PageTeacherList = styled.div`
       grid-template-columns: repeat(3, 1fr);
       column-gap: 16px;
       position: absolute;
-      bottom: -38px;
+      bottom: -30px;
     }
 
     ${Main}{
