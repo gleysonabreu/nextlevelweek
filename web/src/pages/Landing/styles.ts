@@ -128,6 +128,7 @@ export const PageLandingContent = styled.div`
 
     ${TotalConnections}{
       grid-area: total;
+      width: 28rem;
       justify-self: flex-end;
     }
   }
