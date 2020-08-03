@@ -49,7 +49,7 @@ export const Main =styled.main`
 `;
 
 export const PageTeacherList = styled.div`
-  width: 100vw;
+  width: 100vw !important;
   height: 100vh;
 
   @media(min-width: 700px){

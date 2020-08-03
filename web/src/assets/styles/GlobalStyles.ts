@@ -56,7 +56,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .container{
-    width: 100vw;
+    width: 90vw;
     max-width: 700px;
   }
 

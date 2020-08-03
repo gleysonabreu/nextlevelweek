@@ -43,9 +43,10 @@ export const HeaderPage = styled.header`
 
   @media(min-width: 700px){
     height: 340px;
+    width: 100% !important;
 
     ${TopBarContainer}{
-      max-width: 1100px;
+      max-width: 1100px !important;
     }
 
     ${HeaderContent}{
