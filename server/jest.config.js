@@ -12,7 +12,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: "node",
    testMatch: [
-     "src/__tests__/**.spec.ts"
+     "**.spec.ts"
    ],
    rootDir: ".",
 };
