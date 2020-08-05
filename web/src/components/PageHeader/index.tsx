@@ -10,8 +10,9 @@ import backIcon from '../../assets/images/icons/back.svg';
 
 interface IProps {
   title: string;
+  description?: string;
 }
-const PageHeader: React.FC<IProps> = ({ title, children }) => {
+const PageHeader: React.FC<IProps> = ({ title, children, description }) => {
   return(
       <HeaderPage>
         <TopBarContainer>
@@ -23,6 +24,7 @@ const PageHeader: React.FC<IProps> = ({ title, children }) => {
 
         <HeaderContent>
           <strong>{title}</strong>
+          { description && <p>{ description }</p> }
         {children}
         </HeaderContent>
       </HeaderPage>

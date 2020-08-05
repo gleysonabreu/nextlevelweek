@@ -4,7 +4,10 @@ import { PageTeacherForm } from './styles'
 function TeacherForm(){
   return(
     <PageTeacherForm className="container">
-      <PageHeader title="Que incrível que você quer da aulas." />
+      <PageHeader
+      title="Que incrível que você quer da aulas."
+      description="O primeiro passo é preencher esse formulário de inscrição."
+      />
     </PageTeacherForm>
   )
 }
