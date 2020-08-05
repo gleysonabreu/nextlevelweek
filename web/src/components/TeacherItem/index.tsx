@@ -5,40 +5,51 @@ import {
   FooterTeacher
 } from './styles'
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
+import api from '../../service/api';
 
-interface IProffy{
-  proffyData: {
+export interface IProffy{
+    id: number;
     avatar: string;
-    proffyName: string;
+    name: string;
     subject: string;
-    description: string;
-    priceHour: string;
-  }
+    cost: number;
+    bio: string;
+    whatsapp: string;
 }
 
-const TeacherItems: React.FC<IProffy> = (props) => {
+interface ITeacherItemProps {
+  proffyData: IProffy;
+}
+
+const TeacherItems: React.FC<ITeacherItemProps> = ({ proffyData }) => {
+
+  function createNewConnection() {
+    api.post('/connections', {
+      user_id: proffyData.id,
+    })
+  }
   return(
     <TeacherItem>
           <TeacherHeader>
-            <img src={props.proffyData.avatar} alt={props.proffyData.proffyName}/>
+            <img src={proffyData.avatar} alt={proffyData.name}/>
             <div>
-              <strong>{props.proffyData.proffyName}</strong>
-              <span>{props.proffyData.subject}</span>
+              <strong>{proffyData.name}</strong>
+              <span>{proffyData.subject}</span>
             </div>
           </TeacherHeader>
           <p>
-            {props.proffyData.description}
+            {proffyData.bio}
           </p>
 
           <FooterTeacher>
             <p>
               Preço/Hora
-              <strong>R$ {props.proffyData.priceHour}</strong>
+              <strong>R$ {proffyData.cost}</strong>
             </p>
-            <button type="button">
+            <a onClick={createNewConnection} target="_blank" href={`https://wa.me/${proffyData.whatsapp}`} >
               <img src={whatsappIcon} alt="Whatsapp" />
               Entrar em contato
-            </button>
+            </a>
           </FooterTeacher>
         </TeacherItem>
   );
