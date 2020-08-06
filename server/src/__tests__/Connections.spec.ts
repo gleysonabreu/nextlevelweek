@@ -1,6 +1,6 @@
 import supertest from 'supertest';
-import app from '../app';
-import db from '../database/connection';
+import app from '../shared/infra/http/app';
+import db from '../shared/infra/sqlite3';
 describe('Connections', () => {
 
   it('should create connection with valid data', async () => {

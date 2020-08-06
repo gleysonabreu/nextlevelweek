@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import db from "../database/connection";
+import db from "../shared/infra/sqlite3";
 
 export default class ConnectionsController {
   index = async (request: Request, response: Response) => {

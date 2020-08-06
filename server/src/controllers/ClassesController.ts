@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import db from '../database/connection';
-import convertHourToMinutes from '../utils/convertHourToMinutes';
+import db from '../shared/infra/sqlite3/';
+import convertHourToMinutes from '../shared/utils/convertHourToMinutes';
 
 interface IScheduleItem{
   week_day: string;
