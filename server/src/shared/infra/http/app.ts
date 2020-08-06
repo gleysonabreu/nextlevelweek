@@ -1,5 +1,7 @@
 import "reflect-metadata";
 import express from 'express';
+import '../../container';
+import '../typeorm';
 import routes from './routes';
 import cors from 'cors';
 

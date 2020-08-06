@@ -1,24 +1,16 @@
 {
-   "type": "mysql",
-   "host": "localhost",
-   "port": 3306,
-   "username": "test",
-   "password": "test",
-   "database": "test",
+   "type": "sqlite",
+   "database": "src/shared/infra/sqlite3/database.sqlite",
    "synchronize": true,
    "logging": false,
    "entities": [
-      "src/entity/**/*.ts"
+      "src/modules/**/infra/typeorm/entities/*.ts"
    ],
    "migrations": [
-      "src/migration/**/*.ts"
-   ],
-   "subscribers": [
-      "src/subscriber/**/*.ts"
+      "src/shared/infra/typeorm/migrations/*.ts"
    ],
    "cli": {
       "entitiesDir": "src/entity",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
+      "migrationsDir": "src/shared/infra/typeorm/migrations"
    }
 }
