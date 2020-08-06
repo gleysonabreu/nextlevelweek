@@ -9,6 +9,11 @@ class ConnectionsRepository implements IConnectionsRepository {
     this.ormRepository = getRepository(Connecntions);
   }
 
+  countAll = async (): Promise<number> => {
+    const [count, totalConnections] = await this.ormRepository.findAndCount()
+    return totalConnections;
+  }
+
   create = async (user_id: number): Promise<Connecntions> => {
     const connecntion = this.ormRepository.create({
       user_id,
