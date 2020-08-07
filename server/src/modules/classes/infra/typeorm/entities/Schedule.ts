@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, RelationId, JoinColumn } from 'typeorm';
 import Classes from './Classes';
 
 @Entity('class_schedule')
@@ -16,15 +16,12 @@ class Schedule {
   @Column()
   to: number;
 
-  @ManyToOne(type => Classes, classes => classes.schedule, {
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE',
-  })
-  classe: Schedule;
+  @ManyToOne(type => Classes, classes => classes.schedule)
+  @JoinColumn({ referencedColumnName: 'id' })
+  classe: Classes;
 
-  @OneToOne(type => Classes, classes => classes.id)
+  @RelationId((schedule: Schedule) => schedule.classe)
   class_id: number;
-
 }
 
 export default Schedule;

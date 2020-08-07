@@ -19,7 +19,7 @@ class ClassesController {
       schedule
     });
 
-    return response.json({ classe });
+    return response.json({ infos: classe });
   }
 
 }

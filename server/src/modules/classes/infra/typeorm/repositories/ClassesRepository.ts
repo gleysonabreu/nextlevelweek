@@ -17,9 +17,7 @@ class ClassesRepository implements IClassesRepository {
       user_id,
       schedule
     });
-
     await this.ormRepository.save(classe);
-
     return classe;
   }
 }

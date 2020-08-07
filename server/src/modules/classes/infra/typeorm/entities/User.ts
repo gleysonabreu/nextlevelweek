@@ -19,8 +19,10 @@ class User {
   @Column()
   bio: string;
 
-  @OneToMany(type => Classes, classes => classes.user)
-  classes: Classes[];
+  @OneToMany(type => Classes, classes => classes.user, {
+    cascade: ['insert', 'remove', 'update']
+  })
+  classes: Classes;
 
 }
 

@@ -4,5 +4,9 @@ export default interface ICreateClasses {
   subject: string;
   cost: number;
   user_id: number;
-  schedule: Schedule[]
+  schedule: Array<{
+    week_day: number;
+    to: number;
+    from: number;
+  }>;
 }

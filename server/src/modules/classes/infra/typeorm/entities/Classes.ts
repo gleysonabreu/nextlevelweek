@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,
+  OneToMany, JoinColumn, RelationId } from 'typeorm';
 import User from './User';
 import Schedule from './Schedule';
 
@@ -14,9 +15,6 @@ class Classes {
   @Column({ type: 'decimal' })
   cost: number;
 
-  @Column()
-  user_id: number;
-
   @ManyToOne(type => User, user => user.classes, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
@@ -26,7 +24,11 @@ class Classes {
   @OneToMany(type => Schedule, schedule => schedule.classe, {
     cascade: ['insert', 'remove', 'update'],
   })
+  @JoinColumn({ referencedColumnName: 'class_id' })
   schedule: Schedule[];
+
+  @Column()
+  user_id: number;
 
 }
 
