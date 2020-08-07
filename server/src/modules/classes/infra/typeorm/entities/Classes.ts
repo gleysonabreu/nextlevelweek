@@ -15,10 +15,8 @@ class Classes {
   @Column({ type: 'decimal' })
   cost: number;
 
-  @ManyToOne(type => User, user => user.classes, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
-  })
+  @ManyToOne(type => User, user => user.classes)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
   @OneToMany(type => Schedule, schedule => schedule.classe, {

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, JoinColumn } from 'typeorm';
 import Classes from './Classes';
 
 @Entity('users')
@@ -19,10 +19,8 @@ class User {
   @Column()
   bio: string;
 
-  @OneToMany(type => Classes, classes => classes.user, {
-    cascade: ['insert', 'remove', 'update']
-  })
-  classes: Classes;
+  @OneToMany(type => Classes, classes => classes.user)
+  classes: Classes[];
 
 }
 

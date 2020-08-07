@@ -1,7 +1,17 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import CreateClassesService from '../../../services/CreateClassesService';
+import FindClassesService from '../../../services/FindClassesService';
 class ClassesController {
+  index = async (request: Request, response: Response): Promise<Response> => {
+    const filters = request;
+
+    const findClasses = container.resolve(FindClassesService)
+    const classes = await findClasses.execute({ filters });
+
+    return response.json({ classes });
+
+  }
 
   create = async (request: Request, response: Response): Promise<Response> => {
     const {
