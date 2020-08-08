@@ -1,4 +1,5 @@
 import "reflect-metadata";
+import 'express-async-errors';
 import express, { Request, Response, NextFunction } from 'express';
 import '../../container';
 import '../typeorm';
