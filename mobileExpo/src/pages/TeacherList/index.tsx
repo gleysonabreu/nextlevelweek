@@ -14,6 +14,7 @@ function TeacherList() {
   const [proffys, setProffys] = useState([]);
   const [favorites, setFavorites] = useState<number[]>([]);
   const [isFiltersVisible, setIsFiltersVisible] = useState(false);
+  const [message, setMessage] = useState('Use the filters to find yours proffys.');
 
   const [subject, setSubject] = useState('');
   const [week_day, setWeekDay] = useState('');
@@ -35,16 +36,23 @@ function TeacherList() {
 
   async function handleSubmit(){
     loadFavorites();
-    const response = await api.get('/classes', {
-      params: {
-        subject,
-        week_day,
-        time,
-      }
-    });
 
-    setIsFiltersVisible(false);
-    setProffys(response.data);
+    try {
+      
+      const response = await api.get('/classes', {
+        params: {
+          subject,
+          week_day,
+          time,
+        }
+      });
+      setIsFiltersVisible(false);
+      setProffys(response.data);
+
+    } catch (error) {
+      setMessage(error.response.data.message);
+    }
+    
   }
 
   return (
@@ -119,7 +127,7 @@ function TeacherList() {
           favorited={favorites.includes(proffy.id)}
           />);
         })
-      : <ErrorMessage message="Use the filters to find yours proffys." />
+      : <ErrorMessage message={message} />
       }
 
     </ScrollView>
