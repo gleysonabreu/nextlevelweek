@@ -50,6 +50,7 @@ function TeacherList() {
       setProffys(response.data);
 
     } catch (error) {
+      setProffys([]);
       setMessage(error.response.data.message);
     }
     
