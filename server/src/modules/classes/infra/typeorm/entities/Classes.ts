@@ -22,7 +22,7 @@ class Classes {
   @OneToMany(type => Schedule, schedule => schedule.classe, {
     cascade: ['insert', 'remove', 'update'],
   })
-  @JoinColumn({ referencedColumnName: 'class_id' })
+  @JoinColumn({ name: 'class_id' })
   schedule: Schedule[];
 
   @Column()

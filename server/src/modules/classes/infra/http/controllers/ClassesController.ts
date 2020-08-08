@@ -9,7 +9,7 @@ class ClassesController {
     const findClasses = container.resolve(FindClassesService)
     const classes = await findClasses.execute({ filters });
 
-    return response.json({ classes });
+    return response.json(classes);
 
   }
 

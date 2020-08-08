@@ -14,9 +14,7 @@ class ClassesRepository implements IClassesRepository {
 
   findClasses = async ({ subject, time, week_day }: IFindClasses): Promise<Classes[] | undefined> => {
 
-    const classes = await this.ormRepository.find({
-      relations: ['user', 'schedule']
-    });
+    const classes = await this.ormRepository.query('select classes.*, users.* from classes inner join users on classes.user_id = users.id where exists (select class_schedule.* from class_schedule where class_schedule."classeId" = classes.id and class_schedule.week_day = $1 and class_schedule.from <= $2 and class_schedule.to > $3) and classes.subject = $4', [week_day, convertHourToMinutes(time), convertHourToMinutes(time), subject]);
 
     return classes;
 
