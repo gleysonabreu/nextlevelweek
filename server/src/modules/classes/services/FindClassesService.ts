@@ -30,6 +30,8 @@ class FindClassesService {
 
     const classes = await this.classesRepository.findClasses({ subject, week_day, time });
 
+    if(classes && classes.length === 0) throw new ApiError('No proffys was found with his filters.');
+
     return classes;
   }
 }
