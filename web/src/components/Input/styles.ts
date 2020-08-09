@@ -16,6 +16,7 @@ export const InputBlock = styled.div`
     outline: 0;
     padding: 0 1.6rem;
     font: 1.6rem Archivo;
+    color: var(--color-text-in-primary) !important;
   }
 
   &:focus-within::after{

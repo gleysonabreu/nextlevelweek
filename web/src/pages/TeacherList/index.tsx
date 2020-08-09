@@ -4,6 +4,7 @@ import TeacherItems, { IProffy } from '../../components/TeacherItem';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 import api from '../../service/api';
+import ErrorMessage from '../../components/ErrorMessage';
 import {
   PageTeacherList,
   SearchTeachers,
@@ -13,22 +14,28 @@ import {
 function TeacherList(){
 
   const [proffys, setProffys] = useState([]);
-
+  const [message, setMessage] = useState('Use the filters to find yours proffys.');
   const [subject, setSubject] = useState('');
   const [week_day, setWeekDay] = useState('');
   const [time, setTime] = useState('');
 
   async function searchTeachers(e: FormEvent) {
     e.preventDefault();
-    const response = await api.get('/classes', {
-      params: {
-        subject,
-        week_day,
-        time,
-      }
-    });
-
-    setProffys(response.data)
+    
+    try {
+      const response = await api.get('/classes', {
+        params: {
+          subject,
+          week_day,
+          time,
+        }
+      });
+  
+      setProffys(response.data)
+    } catch (error) {
+      setProffys([]);
+      setMessage(error.response.data.message)
+    }
   }
   return(
     <PageTeacherList className="container">
@@ -81,9 +88,11 @@ function TeacherList(){
       </PageHeader>
     
       <Main>
-        {proffys.map((proffy: IProffy) => (
-          <TeacherItems key={proffy.id} proffyData={proffy} />
-        ))}
+        {proffys.length > 0 ?
+          proffys.map((proffy: IProffy) => (
+            <TeacherItems key={proffy.id} proffyData={proffy} />
+          ))
+        : <ErrorMessage message={message} />}
       </Main>
     </PageTeacherList>
   )
