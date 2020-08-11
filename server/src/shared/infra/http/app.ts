@@ -6,12 +6,14 @@ import '../typeorm';
 import routes from './routes';
 import cors from 'cors';
 import ApiError from "../../error/ApiError";
+import { errors } from 'celebrate';
 
 
 const app = express();
 app.use(cors())
 app.use(express.json());
 app.use(routes);
+app.use(errors());
 app.use((err: Error, request: Request, response: Response, _:NextFunction) => {
   if(err instanceof ApiError){
     return response.status(err.statusCode).json({

@@ -25,9 +25,7 @@ class FindClassesService {
     const subject = filters.query.subject as string;
     const week_day = filters.query.week_day as string;
     const time = filters.query.time as string;
-
-    if(!subject || !week_day || !time) throw new ApiError('Fill in all fields.');
-
+    
     const classes = await this.classesRepository.findClasses({ subject, week_day, time });
 
     if(classes && classes.length === 0) throw new ApiError('No proffys was found with his filters.');
